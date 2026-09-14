@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}Registro de Convocatorias{% endblock %}</title>
+<style>
+  body{font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;background:#ece7d8;color:#24322c;margin:0;}
+  .wrap{max-width:1000px;margin:0 auto;padding:32px 24px 60px;}
+  h1{font-size:28px;margin:0 0 6px;}
+  .nav{margin-bottom:24px;}
+  .nav a{color:#24322c;text-decoration:none;margin-right:18px;font-size:14px;font-weight:600;}
+  .nav a.admin{color:#a8402f;}
+  table{width:100%;border-collapse:collapse;background:#f8f5ea;font-size:14px;}
+  th,td{padding:10px 12px;border-bottom:1px solid #ddd7c3;text-align:left;}
+  th{text-transform:uppercase;font-size:11px;letter-spacing:.05em;color:#948d78;}
+  .pill{font-size:11px;text-transform:uppercase;padding:2px 8px;border-radius:3px;border:1px solid #ccc;}
+  .urgente{color:#a8402f;font-weight:700;}
+  form.filters{margin-bottom:18px;display:flex;gap:10px;}
+  form.filters input, form.filters select{padding:8px;border:1px solid #c9c2ac;border-radius:3px;}
+  .card{background:#f8f5ea;border:1px solid #c9c2ac;border-radius:4px;padding:16px;margin-bottom:12px;}
+  .empty{padding:40px;text-align:center;color:#666;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="nav">
+    <a href="{% url 'lista_convocatorias' %}">Convocatorias</a>
+    <a href="{% url 'lista_fuentes' %}">Fuentes</a>
+    <a class="admin" href="/admin/">Panel de administración →</a>
+  </div>
+  {% block content %}{% endblock %}
+</div>
+</body>
+</html>

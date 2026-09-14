@@ -1,0 +1,37 @@
+{% extends "convocatorias/base.html" %}
+{% block content %}
+<h1>Registro de Convocatorias</h1>
+<p>Gestiona los registros completos desde el <a href="/admin/">panel de administración</a>.</p>
+
+<form class="filters" method="get">
+  <input type="text" name="q" placeholder="Buscar por institución o área…" value="{{ q }}">
+  <select name="estado">
+    <option value="">Todos los estados</option>
+    {% for value, label in estados %}
+      <option value="{{ value }}" {% if value == estado_actual %}selected{% endif %}>{{ label }}</option>
+    {% endfor %}
+  </select>
+  <button type="submit">Filtrar</button>
+</form>
+
+{% if convocatorias %}
+<table>
+  <tr>
+    <th>Institución</th><th>Fecha límite</th><th>Área</th><th>Monto</th><th>Estado</th><th>Viabilidad</th><th></th>
+  </tr>
+  {% for c in convocatorias %}
+  <tr>
+    <td>{{ c.institucion }}</td>
+    <td class="{% if c.es_urgente %}urgente{% endif %}">{{ c.fecha_limite|default:"—" }}</td>
+    <td>{{ c.area|default:"—" }}</td>
+    <td>{{ c.monto|default:"—" }}</td>
+    <td><span class="pill">{{ c.get_estado_display }}</span></td>
+    <td>{{ c.get_viabilidad_display }}</td>
+    <td>{% if c.link %}<a href="{{ c.link }}" target="_blank">Abrir ↗</a>{% endif %}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="empty">No hay convocatorias que coincidan. Agrega una desde el panel de administración.</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "convocatorias/base.html" %}
+{% block content %}
+<h1>Fuentes</h1>
+<p>Sitios y portales donde buscar convocatorias. Administra la lista completa desde el <a href="/admin/">panel de administración</a>.</p>
+
+{% if fuentes %}
+{% for f in fuentes %}
+<div class="card">
+  <strong>{{ f.nombre }}</strong> <span class="pill">{{ f.get_tipo_display }}</span><br>
+  {% if f.url %}<a href="{{ f.url }}" target="_blank">{{ f.url }}</a><br>{% endif %}
+  {% if f.notas %}<p>{{ f.notas }}</p>{% endif %}
+</div>
+{% endfor %}
+{% else %}
+<div class="empty">No hay fuentes registradas todavía.</div>
+{% endif %}
+{% endblock %}

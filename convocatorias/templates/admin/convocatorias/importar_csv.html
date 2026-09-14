@@ -1,0 +1,16 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+<h1>Importar convocatorias desde CSV</h1>
+<p>
+  El archivo debe tener encabezados. La única columna obligatoria es
+  <code>institucion</code>; si el nombre ya existe, esa convocatoria se
+  actualiza en vez de duplicarse. Columnas opcionales:
+  <code>link, fecha_limite (AAAA-MM-DD), area, monto, estado, viabilidad,
+  notas, etiquetas (separadas por coma), proyectos (separados por coma)</code>.
+</p>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <p><input type="file" name="archivo_csv" accept=".csv" required></p>
+  <input type="submit" class="default" value="Importar">
+</form>
+{% endblock %}
